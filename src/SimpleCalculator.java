@@ -55,7 +55,6 @@ public class SimpleCalculator {
         frame.setVisible(true);
     }
 
-    // 内部类，实现 ActionListener 接口，处理按钮点击事件
     private class ButtonClickListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             // 获取按钮上的文本
@@ -63,6 +62,28 @@ public class SimpleCalculator {
             // 如果按钮文本是数字，将其追加到文本框中
             if (command.charAt(0) >= '0' && command.charAt(0) <= '9') {
                 textField.setText(textField.getText() + command);
+            }
+            // 如果按钮文本是 'C'，清除文本框内容并重置变量
+            else if (command.charAt(0) == 'C') {
+                textField.setText("");
+                num1 = num2 = result = 0;
+            }
+            // 如果按钮文本是 '='，进行计算并显示结果
+            else if (command.charAt(0) == '=') {
+                num2 = Double.parseDouble(textField.getText());
+                switch (operator) {
+                    case '+': result = num1 + num2; break;
+                    case '-': result = num1 - num2; break;
+                    case '*': result = num1 * num2; break;
+                    case '/': result = num2 != 0 ? num1 / num2 : 0; break;
+                }
+                textField.setText(String.valueOf(result));
+            }
+            // 如果按钮文本是运算符，记录第一个操作数和运算符，并清空文本框
+            else {
+                num1 = Double.parseDouble(textField.getText());
+                operator = command.charAt(0);
+                textField.setText("");
             }
         }
     }
