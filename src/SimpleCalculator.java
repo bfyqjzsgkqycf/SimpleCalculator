@@ -1,9 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SimpleCalculator {
     private JFrame frame;
     private JTextField textField;
+    private double num1, num2, result;
+    private char operator;
 
     public SimpleCalculator() {
         // 创建一个 JFrame 窗口，标题为 "计算器"
@@ -36,10 +40,11 @@ public class SimpleCalculator {
                 "0", "C", "=", "+"
         };
 
-        // 遍历按钮文本数组，创建按钮并添加到面板上
         for (String text : buttons) {
             JButton button = new JButton(text);
             button.setFont(new Font("Arial", Font.BOLD, 20));
+            // 为按钮添加事件监听器
+            button.addActionListener(new ButtonClickListener());
             panel.add(button);
         }
 
@@ -48,6 +53,18 @@ public class SimpleCalculator {
 
         // 设置窗口可见
         frame.setVisible(true);
+    }
+
+    // 内部类，实现 ActionListener 接口，处理按钮点击事件
+    private class ButtonClickListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            // 获取按钮上的文本
+            String command = e.getActionCommand();
+            // 如果按钮文本是数字，将其追加到文本框中
+            if (command.charAt(0) >= '0' && command.charAt(0) <= '9') {
+                textField.setText(textField.getText() + command);
+            }
+        }
     }
 
     public static void main(String[] args) {
