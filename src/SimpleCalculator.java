@@ -24,6 +24,28 @@ public class SimpleCalculator {
         // 将文本框添加到窗口的北部
         frame.add(textField, BorderLayout.NORTH);
 
+        // 创建一个 JPanel 用于放置按钮
+        JPanel panel = new JPanel();
+        // 设置面板的布局为 4 行 4 列的网格布局，组件之间的水平和垂直间距为 5 像素
+        panel.setLayout(new GridLayout(4, 4, 5, 5));
+        // 定义按钮上显示的文本数组
+        String[] buttons = {
+                "7", "8", "9", "/",
+                "4", "5", "6", "*",
+                "1", "2", "3", "-",
+                "0", "C", "=", "+"
+        };
+
+        // 遍历按钮文本数组，创建按钮并添加到面板上
+        for (String text : buttons) {
+            JButton button = new JButton(text);
+            button.setFont(new Font("Arial", Font.BOLD, 20));
+            panel.add(button);
+        }
+
+        // 将按钮面板添加到窗口的中心位置
+        frame.add(panel, BorderLayout.CENTER);
+
         // 设置窗口可见
         frame.setVisible(true);
     }
