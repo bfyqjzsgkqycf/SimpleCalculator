@@ -18,6 +18,10 @@ public class SimpleCalculator {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 设置窗口的布局为 BorderLayout
         frame.setLayout(new BorderLayout());
+        // 设置窗口不可调整大小
+        frame.setResizable(false);
+        // 设置窗口居中显示
+        frame.setLocationRelativeTo(null);
 
         // 创建一个 JTextField 用于显示输入和结果
         textField = new JTextField();
@@ -87,7 +91,7 @@ public class SimpleCalculator {
                 }
                 textField.setText(String.valueOf(result));
             }
-            // 如果按钮文本是运算符, 记录第一个操作数和运算符，并清空文本框
+            // 如果按钮文本是运算符, 记录第一个操作数和运算符, 并清空文本框
             else {
                 num1 = Double.parseDouble(textField.getText());
                 operator = command.charAt(0);
