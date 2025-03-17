@@ -1,5 +1,3 @@
-# SimpleCalculator
-
 ## Introduction
 
 SimpleCalculator is a Java-based project designed to provide basic arithmetic calculation functions. It offers a simple
